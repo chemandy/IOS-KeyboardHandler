@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FormKeyboardViewController.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : FormKeyboardViewController
+
+@property (weak, nonatomic) IBOutlet UITextField *textField1;
+@property (weak, nonatomic) IBOutlet UIScrollView *myScrollView;
 
 @end

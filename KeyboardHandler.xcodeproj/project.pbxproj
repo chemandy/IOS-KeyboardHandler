@@ -18,6 +18,9 @@
 		C737E8F516E884B30070D12E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C737E8F416E884B30070D12E /* Default-568h@2x.png */; };
 		C737E8F816E884B30070D12E /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C737E8F616E884B30070D12E /* MainStoryboard.storyboard */; };
 		C737E8FB16E884B30070D12E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C737E8FA16E884B30070D12E /* ViewController.m */; };
+		C737E90316E8858D0070D12E /* FormKeyboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C737E90216E8858D0070D12E /* FormKeyboardViewController.m */; };
+		C737E90916E8AABB0070D12E /* UIViewController+KeyboardHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C737E90816E8AABB0070D12E /* UIViewController+KeyboardHandler.m */; };
+		C737E90F16E8D9180070D12E /* KeyboardScrollHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C737E90E16E8D9170070D12E /* KeyboardScrollHandler.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +40,12 @@
 		C737E8F716E884B30070D12E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		C737E8F916E884B30070D12E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		C737E8FA16E884B30070D12E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		C737E90116E8858D0070D12E /* FormKeyboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormKeyboardViewController.h; sourceTree = "<group>"; };
+		C737E90216E8858D0070D12E /* FormKeyboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormKeyboardViewController.m; sourceTree = "<group>"; };
+		C737E90716E8AABB0070D12E /* UIViewController+KeyboardHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+KeyboardHandler.h"; sourceTree = "<group>"; };
+		C737E90816E8AABB0070D12E /* UIViewController+KeyboardHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+KeyboardHandler.m"; sourceTree = "<group>"; };
+		C737E90D16E8D9170070D12E /* KeyboardScrollHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardScrollHandler.h; sourceTree = "<group>"; };
+		C737E90E16E8D9170070D12E /* KeyboardScrollHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardScrollHandler.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,7 +97,13 @@
 				C737E8F616E884B30070D12E /* MainStoryboard.storyboard */,
 				C737E8F916E884B30070D12E /* ViewController.h */,
 				C737E8FA16E884B30070D12E /* ViewController.m */,
+				C737E90116E8858D0070D12E /* FormKeyboardViewController.h */,
+				C737E90216E8858D0070D12E /* FormKeyboardViewController.m */,
 				C737E8E516E884B30070D12E /* Supporting Files */,
+				C737E90716E8AABB0070D12E /* UIViewController+KeyboardHandler.h */,
+				C737E90816E8AABB0070D12E /* UIViewController+KeyboardHandler.m */,
+				C737E90D16E8D9170070D12E /* KeyboardScrollHandler.h */,
+				C737E90E16E8D9170070D12E /* KeyboardScrollHandler.m */,
 			);
 			path = KeyboardHandler;
 			sourceTree = "<group>";
@@ -176,6 +191,9 @@
 				C737E8EB16E884B30070D12E /* main.m in Sources */,
 				C737E8EF16E884B30070D12E /* AppDelegate.m in Sources */,
 				C737E8FB16E884B30070D12E /* ViewController.m in Sources */,
+				C737E90316E8858D0070D12E /* FormKeyboardViewController.m in Sources */,
+				C737E90916E8AABB0070D12E /* UIViewController+KeyboardHandler.m in Sources */,
+				C737E90F16E8D9180070D12E /* KeyboardScrollHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,6 +281,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KeyboardHandler/KeyboardHandler-Prefix.pch";
 				INFOPLIST_FILE = "KeyboardHandler/KeyboardHandler-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -274,6 +293,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KeyboardHandler/KeyboardHandler-Prefix.pch";
 				INFOPLIST_FILE = "KeyboardHandler/KeyboardHandler-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
