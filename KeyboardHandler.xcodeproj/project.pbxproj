@@ -19,7 +19,6 @@
 		C737E8F816E884B30070D12E /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C737E8F616E884B30070D12E /* MainStoryboard.storyboard */; };
 		C737E8FB16E884B30070D12E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C737E8FA16E884B30070D12E /* ViewController.m */; };
 		C737E90316E8858D0070D12E /* FormKeyboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C737E90216E8858D0070D12E /* FormKeyboardViewController.m */; };
-		C737E90916E8AABB0070D12E /* UIViewController+KeyboardHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C737E90816E8AABB0070D12E /* UIViewController+KeyboardHandler.m */; };
 		C737E90F16E8D9180070D12E /* KeyboardScrollHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C737E90E16E8D9170070D12E /* KeyboardScrollHandler.m */; };
 /* End PBXBuildFile section */
 
@@ -42,8 +41,6 @@
 		C737E8FA16E884B30070D12E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		C737E90116E8858D0070D12E /* FormKeyboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormKeyboardViewController.h; sourceTree = "<group>"; };
 		C737E90216E8858D0070D12E /* FormKeyboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormKeyboardViewController.m; sourceTree = "<group>"; };
-		C737E90716E8AABB0070D12E /* UIViewController+KeyboardHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+KeyboardHandler.h"; sourceTree = "<group>"; };
-		C737E90816E8AABB0070D12E /* UIViewController+KeyboardHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+KeyboardHandler.m"; sourceTree = "<group>"; };
 		C737E90D16E8D9170070D12E /* KeyboardScrollHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardScrollHandler.h; sourceTree = "<group>"; };
 		C737E90E16E8D9170070D12E /* KeyboardScrollHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardScrollHandler.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -100,8 +97,6 @@
 				C737E90116E8858D0070D12E /* FormKeyboardViewController.h */,
 				C737E90216E8858D0070D12E /* FormKeyboardViewController.m */,
 				C737E8E516E884B30070D12E /* Supporting Files */,
-				C737E90716E8AABB0070D12E /* UIViewController+KeyboardHandler.h */,
-				C737E90816E8AABB0070D12E /* UIViewController+KeyboardHandler.m */,
 				C737E90D16E8D9170070D12E /* KeyboardScrollHandler.h */,
 				C737E90E16E8D9170070D12E /* KeyboardScrollHandler.m */,
 			);
@@ -192,7 +187,6 @@
 				C737E8EF16E884B30070D12E /* AppDelegate.m in Sources */,
 				C737E8FB16E884B30070D12E /* ViewController.m in Sources */,
 				C737E90316E8858D0070D12E /* FormKeyboardViewController.m in Sources */,
-				C737E90916E8AABB0070D12E /* UIViewController+KeyboardHandler.m in Sources */,
 				C737E90F16E8D9180070D12E /* KeyboardScrollHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -318,6 +312,7 @@
 				C737E90016E884B30070D12E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
