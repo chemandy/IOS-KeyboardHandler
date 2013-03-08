@@ -15,4 +15,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *textMiddle;
 @property (weak, nonatomic) IBOutlet UITextField *textBottom;
 
+@property (weak, nonatomic) IBOutlet UITextView *textView1;
+
 @end

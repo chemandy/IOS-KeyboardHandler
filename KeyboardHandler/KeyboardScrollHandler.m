@@ -171,7 +171,8 @@
     return maxVerticalHeight;
 }
 
-- (void)preDealloc
+
+- (void)dealloc
 {
     // 注销观察者
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
@@ -180,11 +181,6 @@
     self.wrapperScrollView = nil;
     self.uiTextViewArray = nil;
     self.uiTextFieldArray = nil;
-}
-
-- (void)dealloc
-{
-    [self preDealloc];
 }
 
 @end

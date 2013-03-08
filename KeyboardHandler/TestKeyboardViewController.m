@@ -35,10 +35,19 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    UIScrollView *scrollView = (UIScrollView*)[self.view viewWithTag:99];
-    scrollView.contentSize = self.view.frame.size;
-    keyboardHandler = [[KeyboardScrollHandler alloc] init];
-    [keyboardHandler configKeyboardHandler:scrollView textFields:@[self.textTop,self.textMiddle,self.textBottom] textViews:nil];
+    [super viewWillAppear:animated];
+    
+    if (!keyboardHandler) {
+        UIScrollView *scrollView = (UIScrollView*)[self.view viewWithTag:99];
+        scrollView.contentSize = self.view.frame.size;
+        keyboardHandler = [[KeyboardScrollHandler alloc] init];
+        [keyboardHandler configKeyboardHandler:scrollView textFields:@[self.textTop,self.textMiddle,self.textBottom] textViews:@[self.textView1]];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning
@@ -51,6 +60,7 @@
     [self setTextTop:nil];
     [self setTextMiddle:nil];
     [self setTextBottom:nil];
+    [self setTextView1:nil];
     [super viewDidUnload];
 }
 @end
