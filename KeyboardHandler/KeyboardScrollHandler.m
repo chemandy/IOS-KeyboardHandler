@@ -98,31 +98,35 @@
     CGFloat visibleViewHeight = wrapperInitialHeight - inKeyboardHeight;
     CGRect viewFrame = self.wrapperScrollView.frame;
     
+    // 计算scrollview的frame height
     if (inKeyboardHeight==0.0f) {
         viewFrame.size.height = wrapperInitialHeight;//如果传入键盘高度为0，即恢复无键盘状态，修正移动高度
+        self.wrapperScrollView.frame = viewFrame;//如果是
     }else{
         viewFrame.size.height = visibleViewHeight;
+    }
+    
+    // 动画结束滚动textfield到中间
+    CGPoint offsetPoint;
+    if (inKeyboardHeight==0.0f) {
+        offsetPoint = CGPointZero;
+    }else{
+        // 点击了编辑框，需要位移
+        CGFloat yPos = textField.frame.origin.y - (visibleViewHeight/2 - textField.frame.size.height/2);
+        yPos = yPos<0 ? 0 : yPos;
+        offsetPoint = CGPointMake(0, yPos);
+        
+        if (yPos>self.wrapperScrollView.contentSize.height-visibleViewHeight + textField.frame.size.height/2) {
+            offsetPoint = CGPointMake(0, self.wrapperScrollView.contentSize.height - visibleViewHeight);
+        }
     }
     
     [UIView animateWithDuration:*(animationDuration) //速度为键盘显引的速度
                  animations:^{//修改坐标
                      self.wrapperScrollView.frame = viewFrame;
-                 } completion:^(BOOL finished) {
-                     // 动画结束
-                     CGPoint offsetPoint;
-                     if (inKeyboardHeight==0.0f) {
-                         offsetPoint = CGPointZero;
-                     }else{
-                         // 点击了编辑框，需要位移
-                         CGFloat yPos = textField.frame.origin.y - (visibleViewHeight/2 - textField.frame.size.height/2);
-                         yPos = yPos<0 ? 0 : yPos;
-                         offsetPoint = CGPointMake(0, yPos);
-                         
-                         if (yPos>self.wrapperScrollView.contentSize.height-visibleViewHeight + textField.frame.size.height/2) {
-                             offsetPoint = CGPointMake(0, self.wrapperScrollView.contentSize.height - self.wrapperScrollView.bounds.size.height);
-                         }
-                     }
                      [self.wrapperScrollView setContentOffset:offsetPoint animated:YES];
+                 } completion:^(BOOL finished) {
+                     //动画完成
                  }];
 
 }
