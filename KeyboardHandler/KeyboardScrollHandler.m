@@ -17,6 +17,11 @@
     self.uiTextFieldArray = [NSMutableArray arrayWithArray:textFields];
     self.uiTextViewArray = [NSMutableArray arrayWithArray:textViews];
     
+    //设定键盘初始化高度，和动画时间
+    keyboardHeihgt = 216.0f;
+    lastKeyboardHeight = 216.0f;
+    animationDurationTime = 0.25f;
+    
     wrapperInitialHeight = wrapper.frame.size.height;
         
     // 添加键盘隐藏事件
@@ -63,24 +68,10 @@
     lastKeyboardHeight = keyboardHeihgt;
     keyboardHeihgt = keyboardRect.size.height;
     
-    NSLog(@"keyboardH : %f",keyboardHeihgt);
-    
-    [self handlekeyboardHeightChange];
-}
 
-
-#pragma mark 当键盘突然高度变化时（输入法切换）的处理
-- (void)handlekeyboardHeightChange
-{
-    CGRect frame = self.wrapperScrollView.frame;
-    
-    float keyboardHeightChange = keyboardHeihgt - lastKeyboardHeight;
-    if (keyboardHeightChange==0) {
-        // 没变化，直接返回
-        return;
+    if (keyboardHeihgt - lastKeyboardHeight != 0) {
+        [self moveInputBarWithKeyboardHeight:keyboardHeihgt withDuration:&(animationDurationTime) forTextField:currentTextField];
     }
-    frame.size.height = frame.size.height - keyboardHeightChange;
-    self.wrapperScrollView.frame = frame;
 }
 
 
@@ -101,34 +92,39 @@
     [self moveInputBarWithKeyboardHeight:0.0 withDuration:&(animationDurationTime) forTextField:currentTextField];
 }
 
-#warning 还需完善
 #pragma mark view进行位移的处理
 - (void)moveInputBarWithKeyboardHeight:(float)inKeyboardHeight withDuration:(NSTimeInterval*)animationDuration forTextField:(UIControl *)textField{
     
     CGFloat visibleViewHeight = wrapperInitialHeight - inKeyboardHeight;
     CGRect viewFrame = self.wrapperScrollView.frame;
     
-    
-    
     if (inKeyboardHeight==0.0f) {
-        
         viewFrame.size.height = wrapperInitialHeight;//如果传入键盘高度为0，即恢复无键盘状态，修正移动高度
     }else{
         viewFrame.size.height = visibleViewHeight;
     }
     
-    [UIView animateWithDuration:*(animationDuration) //速度0.7秒
-                     animations:^{//修改坐标
-                         self.wrapperScrollView.frame = viewFrame;
-                         if (inKeyboardHeight==0.0f) {
-                             self.wrapperScrollView.contentOffset = CGPointZero;
-                         }else{
-                             self.wrapperScrollView.contentOffset = CGPointMake(0, textField.frame.origin.y);
-                         }
-                     } completion:^(BOOL finished) {
+    [UIView animateWithDuration:*(animationDuration) //速度为键盘显引的速度
+                 animations:^{//修改坐标
+                     self.wrapperScrollView.frame = viewFrame;
+                 } completion:^(BOOL finished) {
+                     // 动画结束
+                     CGPoint offsetPoint;
+                     if (inKeyboardHeight==0.0f) {
+                         offsetPoint = CGPointZero;
+                     }else{
+                         // 点击了编辑框，需要位移
+                         CGFloat yPos = textField.frame.origin.y - (visibleViewHeight/2 - textField.frame.size.height/2);
+                         yPos = yPos<0 ? 0 : yPos;
+                         offsetPoint = CGPointMake(0, yPos);
                          
-                     }];
-    
+                         if (yPos>self.wrapperScrollView.contentSize.height-visibleViewHeight + textField.frame.size.height/2) {
+                             offsetPoint = CGPointMake(0, self.wrapperScrollView.contentSize.height - self.wrapperScrollView.bounds.size.height);
+                         }
+                     }
+                     [self.wrapperScrollView setContentOffset:offsetPoint animated:YES];
+                 }];
+
 }
 
 #pragma mark textField和textView完成编辑的事件
@@ -171,17 +167,24 @@
         CGFloat textFieldVerticalHeight = textView.frame.origin.y + textView.frame.size.height;
         maxVerticalHeight = maxVerticalHeight > textFieldVerticalHeight ? maxVerticalHeight : textFieldVerticalHeight;
     }
-    
-    NSLog(@"maxVerticalHeight:%f",maxVerticalHeight);
-    
+
     return maxVerticalHeight;
 }
 
-- (void)dealloc
+- (void)preDealloc
 {
     // 注销观察者
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+    
+    self.wrapperScrollView = nil;
+    self.uiTextViewArray = nil;
+    self.uiTextFieldArray = nil;
+}
+
+- (void)dealloc
+{
+    [self preDealloc];
 }
 
 @end
